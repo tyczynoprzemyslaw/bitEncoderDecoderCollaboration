@@ -67,7 +67,7 @@ public class Stage1Test {
         String actual = stage1.encode(input);
 
         // then
-        assertEquals(input.length(), actual.length() / 2);
+        assertEquals(input.length(), actual.length() / 3);
     }
 
     @Test
