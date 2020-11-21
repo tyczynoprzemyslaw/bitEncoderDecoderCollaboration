@@ -12,3 +12,13 @@ Introduction - create a method encode() in class Stage1. Method takes a string a
 > abc -> aaabbbccc
 >
 > test -> ttteeesssttt
+>
+>## Stage 2
+
+Create a method send() in class Stage2. Method takes a string (it should be each character repeat 3 times, for example 
+instead of d - ddd) as an input and return another string, with changed one char of each of 3 chars blocks.
+>For example
+>
+>aaabbbccc -> axabtbcoc
+>
+>sssooosss -> ssqsoooss
