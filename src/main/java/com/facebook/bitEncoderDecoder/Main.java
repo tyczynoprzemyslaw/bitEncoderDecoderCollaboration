@@ -3,6 +3,8 @@ package com.facebook.bitEncoderDecoder;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello, world");
+        Stage1 stage = new Stage1();
+        stage.encode("abcdefg");
+
     }
 }
