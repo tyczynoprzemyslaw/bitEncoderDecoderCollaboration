@@ -30,38 +30,29 @@ public class Stage2Test {
     public void shouldSendGivenStringReturnStringCoded() {
         // given
         String inputString = "aaabbbccc";
-        String outputString = stage2.send(inputString);
-        List<String> strings = new ArrayList<>();
-        List<String> outputStringsOf3Chars = new ArrayList<>();
-        int index = 0;
-        boolean result = true;
 
         // when
-        while (index < inputString.length()) {
-            strings.add(inputString.substring(index, Math.min(index + 3, inputString.length())));
-            outputStringsOf3Chars.add(outputString.substring(index, Math.min(index + 3, inputString.length())));
-            index += 3;
-        }
-        for (int i = 0; i < strings.size(); i++) {
-            int checker = 0;
-            if (strings.get(i).equals(outputStringsOf3Chars.get(i))) {
-                result = false;
-                continue;
-            }
+        String actual = stage2.send(inputString);
+        boolean hasNoise = true;
 
-            for (int j = 0; j < 3; j++) {
-                if ((strings.get(i)).charAt(j) == (outputStringsOf3Chars.get(i)).charAt(j)) {
-                    checker++;
+        for (int i = 0; i < actual.length() && hasNoise; i += 3){
+            char charPos0 = actual.charAt(i);
+            char charPos1 = actual.charAt(i + 1);
+            char charPos2 = actual.charAt(i + 2);
+
+            if (charPos0 == charPos1) {
+                if (charPos2 == charPos0) {
+                    hasNoise = false;
                 }
-                if (j == 2 && checker < 2) {
-                    result = false;
+            } else {
+                if ((charPos0 != charPos2) && (charPos1 != charPos2)){
+                    hasNoise = false;
                 }
             }
-
         }
 
         // then
-        assertTrue(result);
+        assertTrue(hasNoise);
     }
 
     @Test
