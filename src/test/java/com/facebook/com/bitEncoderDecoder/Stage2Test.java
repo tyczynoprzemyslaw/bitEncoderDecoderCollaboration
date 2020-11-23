@@ -97,6 +97,20 @@ public class Stage2Test {
         assertTrue(result);
     }
 
+    @Test
+    public void shouldOutputLengthBeDivisibleBy3(){
+        // given
+        String input = "aaaiiioooppp";
+        int expected = input.length();
+
+        // when
+        int actual = stage2.send(input).length();
+
+        // then
+        assertEquals(expected, actual);
+
+    }
+
 
     @Test
     public void shouldSendGivenEmptyThrowIllegalArgumentException() {
