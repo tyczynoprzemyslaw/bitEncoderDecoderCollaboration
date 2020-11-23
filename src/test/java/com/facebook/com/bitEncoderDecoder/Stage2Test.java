@@ -1,8 +1,10 @@
 package com.facebook.com.bitEncoderDecoder;
 
 import com.facebook.bitEncoderDecoder.Stage2;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,40 +16,44 @@ public class Stage2Test {
     public void shouldSendGivenEmptyReturnEmpty() {
         // given
         String input = "";
-        String expected = "";
+        String outputString = "";
 
         // when
         String actual = stage2.send(input);
 
         // then
-        assertEquals(expected, actual);
+        assertEquals(outputString, actual);
     }
 
-    @Disabled
+
     @Test
     public void shouldSendGivenStringReturnStringCoded() {
         // given
         String inputString = "aaabbbccc";
-        String expected = "auatbblcc";
-        int[] result = new int[expected.length() / 3];
-        int[] expectedArray = new int[expected.length() / 3];
 
         // when
-        for (int c : expectedArray) {
-            c = 2;
-        }
-        for (int i = 0; i < inputString.length(); i += 3) {
-            for (int j = i; j < inputString.length(); j++) {
-                if (inputString.charAt(j) == expected.charAt(j)) {
-                    result[i]++;
+        String actual = stage2.send(inputString);
+        boolean hasNoise = true;
+
+        for (int i = 0; i < actual.length() && hasNoise; i += 3){
+            char charPos0 = actual.charAt(i);
+            char charPos1 = actual.charAt(i + 1);
+            char charPos2 = actual.charAt(i + 2);
+
+            if (charPos0 == charPos1) {
+                if (charPos2 == charPos0) {
+                    hasNoise = false;
+                }
+            } else {
+                if ((charPos0 != charPos2) && (charPos1 != charPos2)){
+                    hasNoise = false;
                 }
             }
         }
 
         // then
-        assertArrayEquals(result, expectedArray);
+        assertTrue(hasNoise);
     }
-
 
     @Test
     public void shouldSendGivenNullThrowIllegalArgumentException() {
@@ -69,19 +75,42 @@ public class Stage2Test {
         // then
         assertEquals(input.length(), actual.length());
     }
-/*  //i didn't know we should keep it
+
     @Test
-    public void shouldSendGivenSpaceReturnEmpty() {
+    public void shouldInputLengthBeDivisibleBy3() {
         // given
-        String input = " ";
-        String expected = "";
+        String input = "xuxpiplkk";
 
         // when
-        String actual = stage1.encode(input);
+        boolean result = input.length() % 3 == 0;
+
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    public void shouldOutputLengthBeDivisibleBy3(){
+        // given
+        String input = "aaaiiioooppp";
+        int expected = input.length();
+
+        // when
+        int actual = stage2.send(input).length();
 
         // then
         assertEquals(expected, actual);
+
     }
 
- */
+
+    @Test
+    public void shouldSendGivenEmptyThrowIllegalArgumentException() {
+        // given
+        String input = " ";
+
+        // then
+        assertThrows(IllegalArgumentException.class, () -> stage2.send(input));
+    }
+
+
 }
