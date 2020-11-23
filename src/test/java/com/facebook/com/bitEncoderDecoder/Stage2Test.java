@@ -1,7 +1,6 @@
 package com.facebook.com.bitEncoderDecoder;
 
 import com.facebook.bitEncoderDecoder.Stage2;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -26,12 +25,12 @@ public class Stage2Test {
         assertEquals(outputString, actual);
     }
 
-    @Disabled
+
     @Test
     public void shouldSendGivenStringReturnStringCoded() {
         // given
         String inputString = "aaabbbccc";
-        String outputString = "aactbbxcc";
+        String outputString = stage2.send(inputString);
         List<String> strings = new ArrayList<>();
         List<String> outputStringsOf3Chars = new ArrayList<>();
         int index = 0;
@@ -49,7 +48,7 @@ public class Stage2Test {
                 result = false;
                 continue;
             }
-            checker = 0;
+
             for (int j = 0; j < 3; j++) {
                 if ((strings.get(i)).charAt(j) == (outputStringsOf3Chars.get(i)).charAt(j)) {
                     checker++;
@@ -98,17 +97,14 @@ public class Stage2Test {
         assertTrue(result);
     }
 
-    @Test
-    public void shouldSendGivenSpaceReturnEmpty() {
-        // given //when
-        String input = " ";
-        String outputString = "";
 
-        // when
-        String actual = stage2.send(input);
+    @Test
+    public void shouldSendGivenEmptyThrowIllegalArgumentException() {
+        // given
+        String input = " ";
 
         // then
-        assertEquals(outputString, actual);
+        assertThrows(IllegalArgumentException.class, () -> stage2.send(input));
     }
 
 
