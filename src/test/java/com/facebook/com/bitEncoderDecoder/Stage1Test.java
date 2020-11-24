@@ -67,7 +67,7 @@ public class Stage1Test {
         String actual = stage1.encode(input);
 
         // then
-        assertEquals(input.length(), actual.length() / 3);
+        assertEquals(input.length(), actual.length() / Stage1.MULTIPLICATION_FACTOR);
     }
 
     @Test
