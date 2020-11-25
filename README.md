@@ -50,3 +50,13 @@ Create a method decode() in class Stage3. Method takes a string (as output from 
 >aaP -> a
 >
 >TToE_E!SSttO -> TESt
+
+## Stage 4
+
+Connect actions from Stages 1-3 to App class. Use interfaces as described below:
+
+> Encoder: String encode(String)
+> Transmitter: String send(String)
+> Decoder: String decode()
+
+Interface implementantation comes from Stages1-3, but we will switch them on later Stages.
