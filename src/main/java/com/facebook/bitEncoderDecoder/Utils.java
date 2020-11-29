@@ -15,4 +15,22 @@ public class Utils {
         }
         return (char) (given + random);
     }
+
+    public static String[] prepareSegmentedInput(String input) {
+        if (input.isBlank()) {
+            return new String[0];
+        }
+
+        int numberOfTriplets = (int) Math.round(input.length() / 3.0);
+        String[] target = new String[numberOfTriplets];
+
+        StringBuilder source = new StringBuilder(input);
+        int counter = 0;
+        while (source.length() >= 3) {
+            target[counter++] = source.substring(0, 3);
+            source.delete(0, 3);
+        }
+        return target;
+    }
+
 }
