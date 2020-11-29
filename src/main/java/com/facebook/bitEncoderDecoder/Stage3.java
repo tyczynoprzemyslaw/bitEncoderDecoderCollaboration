@@ -6,7 +6,15 @@ public class Stage3 {
 
 
     public  String decode(String input) {
-      return null;
+        InputValidator.validateInput(input);
+        String[] arrayWithChars = Utils.prepareSegmentedInput(input);
+        StringBuilder decodedInput = new StringBuilder();
+        for (int i = 0; i < arrayWithChars.length; i++) {
+            char doubledChar = doubledChar(arrayWithChars[i]);
+            decodedInput.append(doubledChar);
+        }
+
+        return decodedInput.toString();
     }
 
     private  char doubledChar(String trippled) {
