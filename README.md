@@ -22,6 +22,15 @@ Multistage coding exercise based on JetBrains Academy project https://hyperskill
 <li>if code is not accepted, add comments and change status to <strong>In progress</strong></li>
 </ol>
 
+## Branching instruction
+<ul><li>Each branch is named for issue number and short label, describing feature. If there is no issue connected to your task - create one.</li>
+<li>We are pulling our code to <strong>dev</strong> branch.</li>
+<li>After completing new stage, there is a release pull from <strong>dev</strong> to <strong>main</strong>.</li></ul>
+
+<p>Example name of branch:</p>
+
+> 40-newBranchesDescription
+
 ## Stage 1
 Introduction - create a method encode() in class Stage1. Method takes a string as an input and return another string with tripled each character.
 
