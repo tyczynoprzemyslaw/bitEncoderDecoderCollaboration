@@ -11,6 +11,17 @@ Multistage coding exercise based on JetBrains Academy project https://hyperskill
 <li>branching and issue tracking</li>
 </ul>
 
+## What is this project actually?
+We are building an App which simulates transmition of information via internet.</br> 
+There are three modules here:
+<ol>
+<li><strong>Encoder</strong> - takes an input message and encodes it, using a strategy to prevent information loss on transfer by Transmitter.</li>
+<li><strong>Transmitter</strong> - generates random noise in each section of transmitted message.</li>
+<li><strong>Decoder</strong> - takes transmitted message and recovers the original input, using loss-prevention strategies</li></ol>
+<p>On Stages 1-4 we are working with loss prevention strategies based on symbol (char) level. Stages 5+ will be dedicated for bitwise operations and operation such as bit parity and Hamming code.</p>
+
+ ![App schema](images/bitEncoderSchemat.jpg)
+
 ## Workflow
 <ol>
 <li>Project is divided into small <strong>Stages</strong>, each has some added value to the final project. Stages are not independent, but they contribute to final stage of project.</li>
