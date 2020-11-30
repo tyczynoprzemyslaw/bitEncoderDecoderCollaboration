@@ -6,5 +6,6 @@ public class Main {
         Stage1 stage = new Stage1();
         stage.encode("abcdefg");
 
+
     }
 }

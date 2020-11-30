@@ -1,6 +1,6 @@
 # bitEncoderDecoderCollaboration 
 
-Shared project by: Paweł Dąbrowski and Przemysław Tyczyno
+Shared project by: Paweł Dąbrowski, Przemysław Tyczyno and Rafał Pajdak
 
 Multistage coding exercise based on JetBrains Academy project https://hyperskill.org/projects/58?track=1
 
@@ -10,6 +10,17 @@ Multistage coding exercise based on JetBrains Academy project https://hyperskill
 <li>simple documentation</li>
 <li>branching and issue tracking</li>
 </ul>
+
+## What is this project actually?
+We are building an App which simulates transmition of information via internet.</br> 
+There are three modules here:
+<ol>
+<li><strong>Encoder</strong> - takes an input message and encodes it, using a strategy to prevent information loss on transfer by Transmitter.</li>
+<li><strong>Transmitter</strong> - generates random noise in each section of transmitted message.</li>
+<li><strong>Decoder</strong> - takes transmitted message and recovers the original input, using loss-prevention strategies</li></ol>
+<p>On Stages 1-4 we are working with loss prevention strategies based on symbol (char) level. Stages 5+ will be dedicated for bitwise operations and operation such as bit parity and Hamming code.</p>
+
+ ![App schema](images/bitEncoderSchemat.jpg)
 
 ## Workflow
 <ol>
@@ -65,7 +76,9 @@ Create a method decode() in class Stage3. Method takes a string (as output from 
 Connect actions from Stages 1-3 to App class. Use interfaces as described below:
 
 > Encoder: String encode(String)
+>
 > Transmitter: String send(String)
+>
 > Decoder: String decode()
 
 Interface implementantation comes from Stages1-3, but we will switch them on later Stages.
