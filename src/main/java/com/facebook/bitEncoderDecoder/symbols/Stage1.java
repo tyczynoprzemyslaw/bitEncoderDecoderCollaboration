@@ -1,4 +1,4 @@
-package com.facebook.bitEncoderDecoder;
+package com.facebook.bitEncoderDecoder.symbols;
 
 public class Stage1 {
 

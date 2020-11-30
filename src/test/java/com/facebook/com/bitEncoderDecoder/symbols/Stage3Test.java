@@ -1,7 +1,7 @@
-package com.facebook.com.bitEncoderDecoder;
+package com.facebook.com.bitEncoderDecoder.symbols;
 
-import com.facebook.bitEncoderDecoder.Stage1;
-import com.facebook.bitEncoderDecoder.Stage3;
+import com.facebook.bitEncoderDecoder.symbols.Stage1;
+import com.facebook.bitEncoderDecoder.symbols.Stage3;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
