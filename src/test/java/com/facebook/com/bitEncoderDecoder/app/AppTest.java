@@ -18,11 +18,14 @@ public class AppTest {
     @DisplayName("Should app.operate() invoke sendingBox.operate()")
     @Test
     public void shouldOperateBeCalled(){
+        // given
+        String message = "test";
+
         // when
-        app.operate("test");
+        app.operate(message);
 
         // then
-        verify(sendingBox, times(1)).operate(anyString());
+        verify(sendingBox, times(1)).operate(message);
     }
 
     @DisplayName("Should app.operate() return sendingBox.operate() output")
