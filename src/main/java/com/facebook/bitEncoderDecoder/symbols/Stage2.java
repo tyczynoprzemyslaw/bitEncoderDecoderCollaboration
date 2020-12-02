@@ -1,4 +1,7 @@
-package com.facebook.bitEncoderDecoder;
+package com.facebook.bitEncoderDecoder.symbols;
+
+import com.facebook.bitEncoderDecoder.utils.InputValidator;
+import com.facebook.bitEncoderDecoder.utils.Utils;
 
 public class Stage2 {
 
