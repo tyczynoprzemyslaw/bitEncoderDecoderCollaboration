@@ -47,8 +47,13 @@ There are three modules here:
 > 
 
 ## Project specification
+#### Contents
+[Stage 1 - symbol level Encoder](#stage1)<br/>
+[Stage 2 - symbol level Transmitter](#stage2)<br/>
+[Stage 3 - symbol level Decoder](#stage3)<br/>
+[Stage 4 - App operating on implementations from Stages 1-3](#stage4)<br/>
 
-### Stage 1
+### Stage 1<a name="stage1"></a>
 Introduction - create a method encode() in class Stage1. Method takes a string as an input and return another string with tripled each character.
 
 > For example:
@@ -57,7 +62,7 @@ Introduction - create a method encode() in class Stage1. Method takes a string a
 >
 > test -> ttteeesssttt
 
-### Stage 2
+### Stage 2<a name="stage2"></a>
 Create a method send() in class Stage2. Method takes a string (it should be each character repeat 3 times, for example 
 instead of d - ddd) as an input and return another string, with changed one char of each of 3 chars blocks.
 >For example
@@ -66,7 +71,7 @@ instead of d - ddd) as an input and return another string, with changed one char
 >
 >sssooosss -> ssqsoooss
 
-### Stage 3
+### Stage 3<a name="stage3"></a>
 Create a method decode() in class Stage3. Method takes a string (as output from Stage2.send()) and tries to recover original message. Strategy is to check each section of 3 chars, because only one char per 3 is corrupted.
 >For example:
 >
@@ -74,7 +79,7 @@ Create a method decode() in class Stage3. Method takes a string (as output from 
 >
 >TToE_E!SSttO -> TESt
 
-### Stage 4
+### Stage 4<a name="stage4"></a>
 Connect actions from Stages 1-3 to App class. Use interfaces as described below:
 > Encoder: String encode(String)
 >
