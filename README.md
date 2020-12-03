@@ -1,19 +1,27 @@
-# bitEncoderDecoderCollaboration 
+# bitEncoderDecoderCollaboration<a name="top"></a>
 Shared project by: Paweł Dąbrowski, Przemysław Tyczyno and Rafał Pajdak
 
 Multistage coding exercise based on JetBrains Academy project https://hyperskill.org/projects/58?track=1
 
-## What we are learning here
+#### Contents:
+[What we are learning here](#whatWeLearn)<br/>
+[Development progress](#developmentProgress)<br/>
+[What is this project actually?](#whatItDoes)<br/>
+[Workflow](#workflow)<br/>
+[Braching instructions](#branching)<br/>
+[Specification](#specification)<br/>
+
+## What we are learning here<a name="whatWeLearn"></a>
 <ul>
 <li>working in small group on one project</li>
 <li>simple documentation</li>
 <li>branching and issue tracking</li>
 </ul>
 
-## Project development status:
+## Development progress:<a name ="developmentProgress"></a>
 We are currently working on releasing functioning Stage4 on 09.12.2020.
 
-## What is this project actually?
+## What is this project actually?<a name ="whatItDoes"></a>
 We are building an App which simulates transmission of information via internet.</br> 
 There are three modules here:
 <ol>
@@ -24,7 +32,7 @@ There are three modules here:
 
  ![App schema](images/bitEncoderSchemat.jpg)
 
-## Workflow
+## Workflow<a name="workflow"></a>
 <ol>
 <li>Project is divided into small <strong>Stages</strong>, each contributing to the final project. Stages are independent, but we are releasing them in ascending order.</li>
 <li>Each Stage consist of smaller steps to accomplish - at least: tests (we try to follow TDD), documentation and implementation.</li>
@@ -35,7 +43,7 @@ There are three modules here:
 <li>if code is not accepted, add comments and change status to <strong>In progress</strong></li>
 </ol>
 
-## Branching instruction
+## Branching instruction<a name="branching"></a>
 <ul><li>Each branch is named for issue number and short label, describing feature. If there is no issue connected to your task - create one.</li>
 <li>We are pulling our code to <strong>dev</strong> branch for <strong>current Stage</strong> PRs.</li>
 <li>While working on features for future Stages (not considered in nearest release), we are pulling to <strong>dev-StageX</strong> branches respectively.</li>
@@ -46,7 +54,7 @@ There are three modules here:
 > 40-newBranchesDescription
 > 
 
-## Project specification
+## Specification<a name="specification"></a>
 #### Contents
 [Stage 1 - symbol level Encoder](#stage1)<br/>
 [Stage 2 - symbol level Transmitter](#stage2)<br/>
@@ -88,3 +96,6 @@ Connect actions from Stages 1-3 to App class. Use interfaces as described below:
 > Decoder: String decode(String)
 
 Interface implementantations come from Stages1-3.
+<p></p>
+
+[go to top](#top)
