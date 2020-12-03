@@ -58,4 +58,17 @@ public class BitwiseTransmitterImplTest {
         return ones;
     }
 
+    @DisplayName("Should send() given empty or blank return empty")
+    @ParameterizedTest
+    @ValueSource(strings = {"", "   ", "             "})
+    void sendBlanks(String source){
+        // given
+        String expected = "";
+
+        // when
+        String target = transmitter.send(source);
+
+        // then
+        assertEquals(expected, target);
+    }
 }
