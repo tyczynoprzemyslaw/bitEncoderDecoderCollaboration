@@ -82,3 +82,6 @@ Connect actions from Stages 1-3 to App class. Use interfaces as described below:
 > Decoder: String decode()
 
 Interface implementantation comes from Stages1-3, but we will switch them on later Stages.
+
+## Stage 6
+Implement Transmitter on bitwise level. Every byte of message gets 1 of their bit (at random position) changed.
