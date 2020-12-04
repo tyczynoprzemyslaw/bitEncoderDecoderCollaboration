@@ -1,6 +1,6 @@
-package com.facebook.com.bitEncoderDecoder;
+package com.facebook.com.bitEncoderDecoder.symbols;
 
-import com.facebook.bitEncoderDecoder.Stage2;
+import com.facebook.bitEncoderDecoder.symbols.Stage2;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

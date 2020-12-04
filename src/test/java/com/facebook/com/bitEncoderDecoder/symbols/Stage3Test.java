@@ -1,10 +1,12 @@
-package com.facebook.com.bitEncoderDecoder;
+package com.facebook.com.bitEncoderDecoder.symbols;
 
-import com.facebook.bitEncoderDecoder.Stage3;
+import com.facebook.bitEncoderDecoder.symbols.Stage1;
+import com.facebook.bitEncoderDecoder.symbols.Stage3;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -26,6 +28,14 @@ public class Stage3Test {
                 Arguments.of("test", ";tteXessSTtt"),
                 Arguments.of("k12", "Lkk1102_2")
         );
+    }
+
+    @DisplayName("Should encode() return String shorter by a multiplication (encoding) factor")
+    @ParameterizedTest
+    @ValueSource(strings = {"AArrBB_CC", ",., P Aaal]leek", ";CChthrraazzPąąsSs1zzcc0zZz!?!"})
+    void encodeShortensInput(String source){
+        int expectedLength = source.length() / Stage1.MULTIPLICATION_FACTOR;
+        assertEquals(expectedLength, stage3.decode(source).length());
     }
 
 }

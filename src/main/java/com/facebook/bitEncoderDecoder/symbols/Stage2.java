@@ -1,9 +1,12 @@
-package com.facebook.bitEncoderDecoder;
+package com.facebook.bitEncoderDecoder.symbols;
+
+import com.facebook.bitEncoderDecoder.utils.InputValidator;
+import com.facebook.bitEncoderDecoder.utils.Utils;
 
 public class Stage2 {
 
     public String send(String input){
-        validateInput(input);
+        InputValidator.validateInput(input);
         String[] triplets = prepareSegmentedInput(input);
         if (triplets.length == 0){
             return "";
@@ -27,14 +30,6 @@ public class Stage2 {
         return String.valueOf(letters);
     }
 
-    private void validateInput(String input) {
-        if (input == null){
-            throw new IllegalArgumentException("input is null");
-        }
-        if (input.length() % 3 != 0){
-            throw new IllegalArgumentException("input is not encoded correctly");
-        }
-    }
 
     private String[] prepareSegmentedInput(String input){
         if (input.isBlank()){
