@@ -52,7 +52,6 @@ Introduction - create a method encode() in class Stage1. Method takes a string a
 > test -> ttteeesssttt
 
 ## Stage 2
-
 Create a method send() in class Stage2. Method takes a string (it should be each character repeat 3 times, for example 
 instead of d - ddd) as an input and return another string, with changed one char of each of 3 chars blocks.
 >For example
@@ -62,7 +61,6 @@ instead of d - ddd) as an input and return another string, with changed one char
 >sssooosss -> ssqsoooss
 
 ## Stage 3
-
 Create a method decode() in class Stage3. Method takes a string (as output from Stage2.send()) and tries to recover original message. Strategy is to check each section of 3 chars, because only one char per 3 is corrupted.
 
 >For example:
@@ -72,7 +70,6 @@ Create a method decode() in class Stage3. Method takes a string (as output from 
 >TToE_E!SSttO -> TESt
 
 ## Stage 4
-
 Connect actions from Stages 1-3 to App class. Use interfaces as described below:
 
 > Encoder: String encode(String)
@@ -82,3 +79,24 @@ Connect actions from Stages 1-3 to App class. Use interfaces as described below:
 > Decoder: String decode()
 
 Interface implementantation comes from Stages1-3, but we will switch them on later Stages.
+
+## Stage 5
+Implement Encoder on bitwise level. For consistency we count bits from left. Every bit of message is divided on smaller parts, like this:
+> 01011010 (bits are symbolized by: abcdefgh)
+>
+> On each step we take only 3 first bits (significant bits) and add 1 parity bit for verification. Every bit is doubled then, to form a byte.
+>
+> aabbccXX - first three significant bits are doubled. Then two parity bits (see below) are added.
+>
+> ddeeffXX - then another three bits are doubled and parity bits are calculated
+>
+> gghh00XX - if there are not enough bits left in original message, we fill blanks with zeros
+
+Parity bits (on positions 7-8 from left) are loss-prevention strategy. We calculate them by adding 3 significant bits:
+> 010 - odd (parity bit = 1)
+>
+> 000 - even (parity bit = 0)
+>
+> 110 - even (parity bit = 0)
+>
+> 111 - odd (parity bit = 1)
