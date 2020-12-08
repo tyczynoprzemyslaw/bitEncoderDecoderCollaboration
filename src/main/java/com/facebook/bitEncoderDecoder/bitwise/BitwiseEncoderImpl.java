@@ -32,4 +32,23 @@ public class BitwiseEncoderImpl implements Encoder {
             return binary.toString();
         }
     }
+
+    private String checkIfEven(String triplet) {
+        StringBuilder result = new StringBuilder(triplet);
+        int sum = 0;
+        for (int i = 0; i < triplet.length(); i++) {
+            sum += Integer.parseInt(String.valueOf(triplet.charAt(i)));
+        }
+        if (sum % 2 == 0) {
+            result.append("0");
+
+        } else {
+            result.append("1");
+        }
+        while (result.length() < 4) {
+            result.append('0');
+        }
+        return result.toString();
+    }
+
 }
