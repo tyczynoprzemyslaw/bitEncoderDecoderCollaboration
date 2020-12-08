@@ -7,9 +7,25 @@ public class BitwiseEncoderImpl implements Encoder {
 
     @Override
     public String encode(String input) {
-        return null;
+    return null;
     }
 
+
+    private String[] makeTripletDoubled(String[] triplets) {
+        for (int i = 0; i < triplets.length; i++) {
+            String temp = triplets[i];
+            triplets[i] = doubleTriplet(temp);
+        }
+        return triplets;
+    }
+
+    private String[] checkTripletsForParity(String[] strings) {
+        for (int i = 0; i < strings.length; i++) {
+            String temp = strings[i];
+            strings[i] = checkIfTripletEven(temp);
+        }
+        return strings;
+    }
 
     private String charHexToBin(Character ch) {
         String bin = Integer.toBinaryString(ch);
@@ -34,7 +50,7 @@ public class BitwiseEncoderImpl implements Encoder {
         }
     }
 
-    private String checkIfEven(String triplet) {
+    private String checkIfTripletEven(String triplet) {
         StringBuilder result = new StringBuilder(triplet);
         int sum = 0;
         for (int i = 0; i < triplet.length(); i++) {
