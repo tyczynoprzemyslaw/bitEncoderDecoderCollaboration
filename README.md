@@ -81,17 +81,13 @@ Connect actions from Stages 1-3 to App class. Use interfaces as described below:
 Interface implementantation comes from Stages1-3, but we will switch them on later Stages.
 
 ## Stage 5
-Implement Encoder on bitwise level. For consistency we count bits from left. Every bit of message is divided on smaller parts, like this:
-> 01011010 (bits are symbolized by: abcdefgh)
+Implement Encoder on bitwise level. We will work on every char of String message.<p>Please remember, that Strings are char arrays, and chars are just numbers "casted" on ASCII table values (it is a simplification but for this project should be sufficient).</p> We will manipulate every char (number) in String input. For consistency we count bits from left. Every bit of message is divided on smaller parts, like this:
+> Here is sample byte of information (input):
+> 
+> 01011010<br/> (bits are symbolized below by letters: <br/>abcdefgh)
 >
-> On each step we take only 3 first bits (significant bits) and add 1 parity bit for verification. Every bit is doubled then, to form a byte.
+> Take 3 first bits (from left) and add 1 parity bit for verification.
 >
-> aabbccXX - first three significant bits are doubled. Then two parity bits (see below) are added.
->
-> ddeeffXX - then another three bits are doubled and parity bits are calculated
->
-> gghh00XX - if there are not enough bits left in original message, we fill blanks with zeros
-
 Parity bits (on positions 7-8 from left) are loss-prevention strategy. We calculate them by adding 3 significant bits:
 > 010 - odd (parity bit = 1)
 >
@@ -100,3 +96,19 @@ Parity bits (on positions 7-8 from left) are loss-prevention strategy. We calcul
 > 110 - even (parity bit = 0)
 >
 > 111 - odd (parity bit = 1)
+
+> After this, you have 3 bits from input + 1 parity bit: abcX
+> 
+> Double all bits to form first byte of output:
+> 
+> aabbccXX
+> 
+> Then take next three bits from input and transfer them in similar way:
+> 
+> ddeeffXX
+>
+> And at last, the remaining bits. If there are less than 3 bits remaining, use 0 to fill blanks.
+> 
+> gghh00XX
+>
+> Your input was one byte (01011010) but output is three bytes (00110011 11110000 11000011).
