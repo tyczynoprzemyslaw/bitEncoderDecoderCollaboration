@@ -51,4 +51,23 @@ public class BitwiseEncoderImpl implements Encoder {
         return result.toString();
     }
 
+    private String[] getTriplets(String input) {
+        int numberOfTriplets = (input.length() / 3) + 1;
+        int lastPlace = numberOfTriplets - 1;
+        if (input.isBlank()) {
+            return new String[0];
+        }
+
+        String[] triplets = new String[numberOfTriplets];
+
+        StringBuilder source = new StringBuilder(input);
+        int counter = 0;
+        while (source.length() >= 3) {
+            triplets[counter++] = source.substring(0, 3);
+            source.delete(0, 3);
+        }
+        triplets[lastPlace] = source.toString();
+        return triplets;
+    }
+
 }
