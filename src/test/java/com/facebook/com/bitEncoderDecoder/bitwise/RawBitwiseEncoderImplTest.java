@@ -25,7 +25,7 @@ public class RawBitwiseEncoderImplTest {
         return Stream.of(
                 Arguments.of(
                         String.valueOf(
-                                Integer.parseInt("10100011", 2)
+                                (char) Integer.parseInt("10100011", 2)
                         ),
                         String.valueOf(
                                 new char[]{
