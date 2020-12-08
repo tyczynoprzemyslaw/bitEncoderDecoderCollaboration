@@ -1,4 +1,6 @@
-package com.facebook.bitEncoderDecoder;
+package com.facebook.bitEncoderDecoder.app;
+
+import com.facebook.bitEncoderDecoder.symbols.Stage1;
 
 public class Main {
 

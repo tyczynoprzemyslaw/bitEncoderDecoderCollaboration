@@ -1,4 +1,4 @@
-package com.facebook.bitEncoderDecoder;
+package com.facebook.bitEncoderDecoder.utils;
 
 public class InputValidator {
     public static void validateInput(String input) {

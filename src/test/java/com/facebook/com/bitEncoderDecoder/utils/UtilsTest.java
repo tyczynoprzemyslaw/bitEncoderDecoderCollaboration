@@ -1,6 +1,6 @@
-package com.facebook.com.bitEncoderDecoder;
+package com.facebook.com.bitEncoderDecoder.utils;
 
-import com.facebook.bitEncoderDecoder.Utils;
+import com.facebook.bitEncoderDecoder.utils.Utils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

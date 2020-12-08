@@ -1,4 +1,4 @@
-package com.facebook.bitEncoderDecoder;
+package com.facebook.bitEncoderDecoder.utils;
 
 import java.util.concurrent.ThreadLocalRandom;
 
