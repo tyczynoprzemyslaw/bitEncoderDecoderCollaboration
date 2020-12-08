@@ -3,6 +3,7 @@ package com.facebook.bitEncoderDecoder.bitwise;
 import com.facebook.bitEncoderDecoder.app.Encoder;
 
 public class BitwiseEncoderImpl implements Encoder {
+    public static final int MULTIPLICATION_FACTOR = 2;
 
     @Override
     public String encode(String input) {
@@ -68,6 +69,20 @@ public class BitwiseEncoderImpl implements Encoder {
         }
         triplets[lastPlace] = source.toString();
         return triplets;
+    }
+
+    private String doubleTriplet(String input) {
+        StringBuilder encodeString = new StringBuilder();
+        if (input == null) {
+            throw new IllegalArgumentException();
+        } else if (input.equalsIgnoreCase(" ")) {
+            return "";
+        }
+        for (int i = 0; i < input.length(); i++) {
+            String multipliedChar = String.valueOf(input.charAt(i)).repeat(MULTIPLICATION_FACTOR);
+            encodeString.append(multipliedChar);
+        }
+        return encodeString.toString();
     }
 
 }
