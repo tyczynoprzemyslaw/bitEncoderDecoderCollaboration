@@ -20,4 +20,16 @@ public class BitwiseEncoderImpl implements Encoder {
         }
         return result.append("0").append(bin).toString();
     }
+
+    private String getBinaryString(String input) {
+        try {
+            return Integer.toBinaryString(Integer.parseInt(input));
+        } catch (NumberFormatException e) {
+            StringBuilder binary = new StringBuilder();
+            for (int i = 0; i < input.length(); i++) {
+                binary.append(charHexToBin(input.charAt(i)));
+            }
+            return binary.toString();
+        }
+    }
 }
