@@ -52,6 +52,7 @@ public class BitwiseTransmitterImplTest {
 
     private int countOnesInChar(char input){
         int ones = 0;
+        input = (char) (input & 0b11111111);
         int charLength = Integer.toBinaryString(input).length();
         int charLengthWithoutOnes = Integer.toBinaryString(input).replaceAll("1", "").length();
         ones += charLength - charLengthWithoutOnes;
