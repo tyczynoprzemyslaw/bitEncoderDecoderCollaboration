@@ -33,9 +33,9 @@ public class BitwiseTransmitterImplTest {
         // then
         assertEquals(onesInSource.length, onesInTarget.length);
         for (int i = 0; i < onesInSource.length; i++){
-            boolean oneBitIsTaken = onesInSource[i] - 1 == onesInTarget[i];
-            boolean oneBitIsAdded = onesInSource[i] + 1 == onesInTarget[i];
-            assertTrue(oneBitIsTaken || oneBitIsAdded);
+            boolean takenIsOneBit = onesInSource[i] - 1 == onesInTarget[i];
+            boolean addedIsOneBit = onesInSource[i] + 1 == onesInTarget[i];
+            assertTrue(takenIsOneBit || addedIsOneBit);
         }
     }
 
