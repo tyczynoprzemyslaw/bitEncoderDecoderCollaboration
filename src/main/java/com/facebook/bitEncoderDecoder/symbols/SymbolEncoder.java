@@ -1,9 +1,12 @@
 package com.facebook.bitEncoderDecoder.symbols;
 
-public class Stage1 {
+import com.facebook.bitEncoderDecoder.app.Encoder;
+
+public class SymbolEncoder implements Encoder {
 
     public static final int MULTIPLICATION_FACTOR = 3;
 
+    @Override
     public String encode(String input) {
         StringBuilder encodeString = new StringBuilder();
         if (input == null) {

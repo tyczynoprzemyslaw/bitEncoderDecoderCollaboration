@@ -10,6 +10,6 @@ public class App {
     }
 
     public String operate(String input){
-        return null;
+        return sendingBox.operate(input);
     }
 }
