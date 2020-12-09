@@ -7,7 +7,27 @@ public class BitwiseEncoderImpl implements Encoder {
 
     @Override
     public String encode(String input) {
-    return null;
+        StringBuilder result = new StringBuilder();
+
+        String binary = getBinaryString(input);
+
+        String[] triplets = getTriplets(binary);
+
+        triplets = checkTripletsForParity(triplets);
+
+        triplets = makeTripletDoubled(triplets);
+
+
+        return convertBinToHexChar(triplets, result);
+    }
+
+    private String convertBinToHexChar(String[] strings, StringBuilder result) {
+        for (String str : strings) {
+            int charCode = Integer.parseInt(str, 2);
+            String singleChar = Character.toString((char) charCode);
+            result.append(singleChar);
+        }
+        return result.toString();
     }
 
 
