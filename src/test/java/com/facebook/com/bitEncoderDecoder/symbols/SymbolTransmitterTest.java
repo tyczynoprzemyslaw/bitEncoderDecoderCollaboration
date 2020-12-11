@@ -1,13 +1,13 @@
 package com.facebook.com.bitEncoderDecoder.symbols;
 
-import com.facebook.bitEncoderDecoder.symbols.Stage2;
+import com.facebook.bitEncoderDecoder.symbols.SymbolTransmitter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Stage2Test {
+public class SymbolTransmitterTest {
 
-    Stage2 stage2 = new Stage2();
+    SymbolTransmitter symbolTransmitter = new SymbolTransmitter();
 
     @Test
     public void shouldSendGivenEmptyReturnEmpty() {
@@ -16,7 +16,7 @@ public class Stage2Test {
         String outputString = "";
 
         // when
-        String actual = stage2.send(input);
+        String actual = symbolTransmitter.send(input);
 
         // then
         assertEquals(outputString, actual);
@@ -29,7 +29,7 @@ public class Stage2Test {
         String inputString = "aaabbbccc";
 
         // when
-        String actual = stage2.send(inputString);
+        String actual = symbolTransmitter.send(inputString);
         boolean hasNoise = true;
 
         for (int i = 0; i < actual.length() && hasNoise; i += 3){
@@ -58,7 +58,7 @@ public class Stage2Test {
         String input = null;
 
         // then
-        assertThrows(IllegalArgumentException.class, () -> stage2.send(input));
+        assertThrows(IllegalArgumentException.class, () -> symbolTransmitter.send(input));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class Stage2Test {
         String input = "xuxpiplkk";
 
         // when
-        String actual = stage2.send(input);
+        String actual = symbolTransmitter.send(input);
 
         // then
         assertEquals(input.length(), actual.length());
@@ -92,7 +92,7 @@ public class Stage2Test {
         int expected = input.length();
 
         // when
-        int actual = stage2.send(input).length();
+        int actual = symbolTransmitter.send(input).length();
 
         // then
         assertEquals(expected, actual);
@@ -106,7 +106,7 @@ public class Stage2Test {
         String input = " ";
 
         // then
-        assertThrows(IllegalArgumentException.class, () -> stage2.send(input));
+        assertThrows(IllegalArgumentException.class, () -> symbolTransmitter.send(input));
     }
 
 

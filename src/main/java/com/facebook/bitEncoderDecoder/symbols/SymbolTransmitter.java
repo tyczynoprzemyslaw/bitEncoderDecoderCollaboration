@@ -1,10 +1,12 @@
 package com.facebook.bitEncoderDecoder.symbols;
 
+import com.facebook.bitEncoderDecoder.app.Transmitter;
 import com.facebook.bitEncoderDecoder.utils.InputValidator;
 import com.facebook.bitEncoderDecoder.utils.Utils;
 
-public class Stage2 {
+public class SymbolTransmitter implements Transmitter {
 
+    @Override
     public String send(String input){
         InputValidator.validateInput(input);
         String[] triplets = prepareSegmentedInput(input);

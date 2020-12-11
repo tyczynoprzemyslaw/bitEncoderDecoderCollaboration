@@ -1,5 +1,6 @@
 package com.facebook.bitEncoderDecoder.symbols;
 
+import com.facebook.bitEncoderDecoder.app.Decoder;
 import com.facebook.bitEncoderDecoder.utils.InputValidator;
 import com.facebook.bitEncoderDecoder.utils.Utils;
 
@@ -7,9 +8,9 @@ import com.facebook.bitEncoderDecoder.exception.InputNotEncodedCorrectly;
 
 import java.util.*;
 
-public class Stage3 {
+public class SymbolDecoder implements Decoder {
 
-
+    @Override
     public String decode(String input) {
         InputValidator.validateInput(input);
         String[] arrayWithChars = Utils.prepareSegmentedInput(input);
