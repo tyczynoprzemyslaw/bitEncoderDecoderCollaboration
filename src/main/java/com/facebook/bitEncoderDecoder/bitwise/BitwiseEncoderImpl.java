@@ -8,15 +8,12 @@ public class BitwiseEncoderImpl implements Encoder {
     @Override
     public String encode(String input) {
         StringBuilder result = new StringBuilder();
-
         String binary = getBinaryString(input);
-
         String[] triplets = getTriplets(binary);
 
         triplets = checkTripletsForParity(triplets);
 
         triplets = makeTripletDoubled(triplets);
-
 
         return convertBinToHexChar(triplets, result);
     }
@@ -50,12 +47,19 @@ public class BitwiseEncoderImpl implements Encoder {
     private String charHexToBin(Character ch) {
         String bin = Integer.toBinaryString(ch);
         StringBuilder result = new StringBuilder();
-        if (bin.length() == 6) {
-            return result.append("00").append(bin).toString();
-        } else if (bin.length() == 8) {
+        if (bin.length() == 8) {
             return result.append(bin).toString();
+        } else {
+            int desiredLength = 8;
+            int missingZeros = desiredLength - bin.length();
+            for (int i = 0; i < missingZeros; i++) {
+                result.append("0");
+            }
+
         }
-        return result.append("0").append(bin).toString();
+        result.append(bin);
+
+        return result.toString();
     }
 
     private String getBinaryString(String input) {
@@ -71,6 +75,13 @@ public class BitwiseEncoderImpl implements Encoder {
     }
 
     private String checkIfTripletEven(String triplet) {
+        if (triplet.length() < 3) {
+            StringBuilder newTriplet = new StringBuilder(triplet);
+            while (newTriplet.length() < 3) {
+                newTriplet.append("0");
+            }
+            triplet = newTriplet.toString();
+        }
         StringBuilder result = new StringBuilder(triplet);
         int sum = 0;
         for (int i = 0; i < triplet.length(); i++) {
