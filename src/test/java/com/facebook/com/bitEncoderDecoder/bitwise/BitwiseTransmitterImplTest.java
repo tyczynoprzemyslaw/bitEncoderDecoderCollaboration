@@ -33,9 +33,9 @@ public class BitwiseTransmitterImplTest {
         // then
         assertEquals(onesInSource.length, onesInTarget.length);
         for (int i = 0; i < onesInSource.length; i++){
-            boolean oneBitIsTaken = onesInSource[i] - 1 == onesInTarget[i];
-            boolean oneBitIsAdded = onesInSource[i] + 1 == onesInTarget[i];
-            assertTrue(oneBitIsTaken || oneBitIsAdded);
+            boolean takenIsOneBit = onesInSource[i] - 1 == onesInTarget[i];
+            boolean addedIsOneBit = onesInSource[i] + 1 == onesInTarget[i];
+            assertTrue(takenIsOneBit || addedIsOneBit);
         }
     }
 
@@ -52,6 +52,7 @@ public class BitwiseTransmitterImplTest {
 
     private int countOnesInChar(char input){
         int ones = 0;
+        input = (char) (input & 0b11111111);
         int charLength = Integer.toBinaryString(input).length();
         int charLengthWithoutOnes = Integer.toBinaryString(input).replaceAll("1", "").length();
         ones += charLength - charLengthWithoutOnes;
