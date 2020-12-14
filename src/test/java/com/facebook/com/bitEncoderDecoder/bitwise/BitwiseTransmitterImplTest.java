@@ -2,15 +2,25 @@ package com.facebook.com.bitEncoderDecoder.bitwise;
 
 import com.facebook.bitEncoderDecoder.app.Transmitter;
 import com.facebook.bitEncoderDecoder.bitwise.BitwiseTransmitterImpl;
+import com.facebook.bitEncoderDecoder.utils.RandomProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class BitwiseTransmitterImplTest {
 
-    Transmitter transmitter = new BitwiseTransmitterImpl();
+    RandomProvider randomProvider = mock(RandomProvider.class);
+    Transmitter transmitter = new BitwiseTransmitterImpl(randomProvider);
 
     @DisplayName("Should send() outputs changed string")
     @ParameterizedTest
@@ -71,5 +81,103 @@ public class BitwiseTransmitterImplTest {
 
         // then
         assertEquals(expected, target);
+    }
+
+    @DisplayName("Should send() change determined bit while mocking RandomProvider")
+    @ParameterizedTest
+    @MethodSource("sendMocksArgumentsProvider")
+    void sendMocks(int positionForChange, String expected, String given) {
+        // given
+        when(randomProvider.getRandom(anyInt())).thenReturn(positionForChange);
+        when(randomProvider.getRandom(anyInt(), anyInt())).thenReturn(positionForChange);
+
+        // when
+        String actual = transmitter.send(given);
+
+        // then
+        assertEquals(expected, actual);
+    }
+    private static Stream<Arguments> sendMocksArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(
+                        0,
+                        String.valueOf(
+                                (char) Integer.parseInt("10111100", 2)
+                        ),
+                        String.valueOf(
+                                (char) Integer.parseInt("00111100", 2)
+                        )
+                ),
+                Arguments.of(
+                        1,
+                        String.valueOf(
+                                new char[]{
+                                        (char) Integer.parseInt("01111100", 2),
+                                        (char) Integer.parseInt("10001100", 2),
+                                        (char) Integer.parseInt("01000000", 2),
+                                        (char) Integer.parseInt("10110000", 2),
+                                        (char) Integer.parseInt("01110011", 2),
+                                        (char) Integer.parseInt("10001100", 2),
+                                        (char) Integer.parseInt("01110011", 2),
+                                        (char) Integer.parseInt("01111100", 2),
+                                        (char) Integer.parseInt("01111100", 2),
+                                        (char) Integer.parseInt("10001100", 2),
+                                        (char) Integer.parseInt("01000000", 2),
+                                }
+                        ),
+                        String.valueOf(
+                                new char[]{
+                                        (char) Integer.parseInt("00111100", 2),
+                                        (char) Integer.parseInt("11001100", 2),
+                                        (char) Integer.parseInt("00000000", 2),
+                                        (char) Integer.parseInt("11110000", 2),
+                                        (char) Integer.parseInt("00110011", 2),
+                                        (char) Integer.parseInt("11001100", 2),
+                                        (char) Integer.parseInt("00110011", 2),
+                                        (char) Integer.parseInt("00111100", 2),
+                                        (char) Integer.parseInt("00111100", 2),
+                                        (char) Integer.parseInt("11001100", 2),
+                                        (char) Integer.parseInt("00000000", 2),
+                                }
+                        )
+                ),
+                Arguments.of(
+                        5,
+                        String.valueOf(
+                                new char[]{
+                                        (char) Integer.parseInt("11001000", 2),
+                                        (char) Integer.parseInt("00000100", 2),
+                                        (char) Integer.parseInt("11110100", 2)
+                                }
+
+                        ),
+                        String.valueOf(
+                                new char[]{
+                                        (char) Integer.parseInt("11001100", 2),
+                                        (char) Integer.parseInt("00000000", 2),
+                                        (char) Integer.parseInt("11110000", 2)
+                                }
+
+                        )
+                ),
+                Arguments.of(
+                        6,
+                        String.valueOf(
+                                new char[]{
+                                        (char) Integer.parseInt("00110001", 2),
+                                        (char) Integer.parseInt("11110010", 2),
+                                        (char) Integer.parseInt("00001101", 2)
+                                }
+                        ),
+                        String.valueOf(
+                                new char[]{
+                                        (char) Integer.parseInt("00110011", 2),
+                                        (char) Integer.parseInt("11110000", 2),
+                                        (char) Integer.parseInt("00001111", 2)
+                                }
+                        )
+                )
+
+        );
     }
 }

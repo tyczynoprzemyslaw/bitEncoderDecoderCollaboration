@@ -1,11 +1,11 @@
 package com.facebook.bitEncoderDecoder.app;
 
-import com.facebook.bitEncoderDecoder.symbols.Stage1;
+import com.facebook.bitEncoderDecoder.symbols.SymbolEncoder;
 
 public class Main {
 
     public static void main(String[] args) {
-        Stage1 stage = new Stage1();
+        SymbolEncoder stage = new SymbolEncoder();
         stage.encode("abcdefg");
 
 
