@@ -1,14 +1,14 @@
 package com.facebook.com.bitEncoderDecoder.symbols;
 
-import com.facebook.bitEncoderDecoder.symbols.Stage1;
+import com.facebook.bitEncoderDecoder.symbols.SymbolEncoder;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class Stage1Test {
+public class SymbolEncoderTest {
 
-    Stage1 stage1 = new Stage1();
+    SymbolEncoder symbolEncoder = new SymbolEncoder();
 
     @Test
     public void shouldEncodeGivenEmptyReturnEmpty() {
@@ -17,7 +17,7 @@ public class Stage1Test {
         String expected = "";
 
         // when
-        String actual = stage1.encode(input);
+        String actual = symbolEncoder.encode(input);
 
         // then
         assertEquals(expected, actual);
@@ -30,7 +30,7 @@ public class Stage1Test {
         String expected = "aaabbbccc";
 
         // when
-        String actual = stage1.encode(input);
+        String actual = symbolEncoder.encode(input);
 
         // then
         assertEquals(expected, actual);
@@ -43,7 +43,7 @@ public class Stage1Test {
         String expected = ";;;111555666!!!...";
 
         // when
-        String actual = stage1.encode(input);
+        String actual = symbolEncoder.encode(input);
 
         // then
         assertEquals(expected, actual);
@@ -55,7 +55,7 @@ public class Stage1Test {
         String input = null;
 
         // then
-        assertThrows(IllegalArgumentException.class, () -> stage1.encode(input));
+        assertThrows(IllegalArgumentException.class, () -> symbolEncoder.encode(input));
     }
 
     @Test
@@ -64,10 +64,10 @@ public class Stage1Test {
         String input = "Ala ma kota a kot ma Alę";
 
         // when
-        String actual = stage1.encode(input);
+        String actual = symbolEncoder.encode(input);
 
         // then
-        assertEquals(input.length(), actual.length() / Stage1.MULTIPLICATION_FACTOR);
+        assertEquals(input.length(), actual.length() / SymbolEncoder.MULTIPLICATION_FACTOR);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class Stage1Test {
         String expected = "";
 
         // when
-        String actual = stage1.encode(input);
+        String actual = symbolEncoder.encode(input);
 
         // then
         assertEquals(expected, actual);

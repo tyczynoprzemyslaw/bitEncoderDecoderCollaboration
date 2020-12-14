@@ -11,8 +11,16 @@ Multistage coding exercise based on JetBrains Academy project https://hyperskill
 <li>branching and issue tracking</li>
 </ul>
 
+
+## Development progress:<a name ="developmentProgress"></a>
+We are currently working on releasing functioning Stage 5 on 16.12.2020.
+
+## What is this project actually?<a name ="whatItDoes"></a>
+We are building an App which simulates transmission of information via internet.</br> 
+=======
 ## What is this project actually?
 We are building an App which simulates transmition of information via internet.</br> 
+
 There are three modules here:
 <ol>
 <li><strong>Encoder</strong> - takes an input message and encodes it, using a strategy to prevent information loss on transfer by Transmitter.</li>
@@ -41,6 +49,17 @@ There are three modules here:
 <p>Example name of branch:</p>
 
 > 40-newBranchesDescription
+
+
+## Specification<a name="specification"></a>
+#### Contents
+[Stage 1 - symbol level Encoder](#stage1)<br/>
+[Stage 2 - symbol level Transmitter](#stage2)<br/>
+[Stage 3 - symbol level Decoder](#stage3)<br/>
+[Stage 4 - App operating on implementations from Stages 1-3](#stage4)<br/>
+[Stage 6 - bit level Transmitter](#stage6)<br/>
+=======
+
 
 ## Stage 1
 Introduction - create a method encode() in class Stage1. Method takes a string as an input and return another string with tripled each character.
@@ -80,6 +99,14 @@ Connect actions from Stages 1-3 to App class. Use interfaces as described below:
 
 Interface implementantation comes from Stages1-3, but we will switch them on later Stages.
 
+
+Interface implementantations come from Stages1-3.
+
+### Stage 6<a name="stage6"></a>
+Implement Transmitter on bitwise level. Every byte of message gets 1 of their bit (at random position) changed.
+
+[go to top](#top)
+
 ## Stage 5
 Implement Encoder on bitwise level. For consistency we count bits from left. Every bit of message is divided on smaller parts, like this:
 > 01011010 (bits are symbolized by: abcdefgh)
@@ -100,3 +127,4 @@ Parity bits (on positions 7-8 from left) are loss-prevention strategy. We calcul
 > 110 - even (parity bit = 0)
 >
 > 111 - odd (parity bit = 1)
+

@@ -17,21 +17,23 @@ public class SymbolSendingBoxImpl implements SendingBox {
 
     @Override
     public String operate(String input) {
-        return null;
+        String encoded = encoder.encode(input);
+        String sent = transmitter.send(encoded);
+        return decoder.decode(sent);
     }
 
     @Override
     public String decode(String input) {
-        return null;
+        return decoder.decode(input);
     }
 
     @Override
     public String send(String input) {
-        return null;
+        return transmitter.send(input);
     }
 
     @Override
     public String encode(String input) {
-        return null;
+        return encoder.encode(input);
     }
 }
