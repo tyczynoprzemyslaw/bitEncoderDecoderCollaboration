@@ -7,7 +7,7 @@ public class RawBitwiseEncoderImpl implements Encoder {
 
     @Override
     public String encode(String input) {
-        if (input == null || input.isBlank()){
+        if (input == null || input.isEmpty()){
             return "";
         }
         return encodeChars(input);
