@@ -28,8 +28,8 @@ public class BitwiseTransmitterImpl implements Transmitter {
         }
         for (String str : chars) {
             int indexToChange = getIndexToChange(str);
-            String resul = convertCharArrToString(changeElement(str.toCharArray(), indexToChange));
-            result.append(convertBinToHexChar(resul));
+            String stringOfChar = convertCharArrToString(changeElement(str.toCharArray(), indexToChange));
+            result.append(convertBinToHexChar(stringOfChar));
         }
 
         return null;
@@ -63,6 +63,18 @@ public class BitwiseTransmitterImpl implements Transmitter {
         }
         ;
         return chars;
+    }
+    private String convertCharArrToString(char[] chars) {
+        StringBuilder result = new StringBuilder();
+        for (Character ch : chars) {
+            result.append(ch);
+        }
+        return result.toString();
+    }
+
+    private String convertBinToHexChar(String string) {
+        int charCode = Integer.parseInt(string, 2);
+        return Character.toString((char) charCode);
     }
 
 }
