@@ -32,7 +32,7 @@ public class BitwiseTransmitterImpl implements Transmitter {
             result.append(convertBinToHexChar(stringOfChar));
         }
 
-        return null;
+        return result.toString();
     }
 
     private String charHexToBin(Character ch) {
