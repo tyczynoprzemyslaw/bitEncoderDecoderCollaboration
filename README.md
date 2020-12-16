@@ -11,8 +11,12 @@ Multistage coding exercise based on JetBrains Academy project https://hyperskill
 <li>branching and issue tracking</li>
 </ul>
 
-## What is this project actually?
-We are building an App which simulates transmition of information via internet.</br> 
+## Development progress:<a name ="developmentProgress"></a>
+We are currently working on releasing functioning Stage 5 on 16.12.2020.
+
+## What is this project actually?<a name ="whatItDoes"></a>
+We are building an App which simulates transmission of information via internet.</br> 
+
 There are three modules here:
 <ol>
 <li><strong>Encoder</strong> - takes an input message and encodes it, using a strategy to prevent information loss on transfer by Transmitter.</li>
@@ -112,3 +116,6 @@ Parity bits (on positions 7-8 from left) are loss-prevention strategy. We calcul
 > gghh00XX
 >
 > Your input was one byte (01011010) but output is three bytes (00110011 11110000 11000011).
+
+[go to top](#top)
+
