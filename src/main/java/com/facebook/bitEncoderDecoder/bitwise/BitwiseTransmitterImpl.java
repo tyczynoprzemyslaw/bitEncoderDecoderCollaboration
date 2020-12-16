@@ -23,7 +23,14 @@ public class BitwiseTransmitterImpl implements Transmitter {
         StringBuilder result = new StringBuilder();
 
         String[] chars = new String[input.length()];
-
+        for (int i = 0; i < input.length(); i++) {
+            chars[i] = charHexToBin(input.charAt(i));
+        }
+        for (String str : chars) {
+            int indexToChange = getIndexToChange(str);
+            String resul = convertCharArrToString(changeElement(str.toCharArray(), indexToChange));
+            result.append(convertBinToHexChar(resul));
+        }
 
         return null;
     }
@@ -44,5 +51,18 @@ public class BitwiseTransmitterImpl implements Transmitter {
         return result.toString();
     }
 
+    private int getIndexToChange(String binary) {
+        return randomProvider.getRandom(0, binary.length());
+    }
+
+    private char[] changeElement(char[] chars, int indexToChange) {
+        if (chars[indexToChange] == '1') {
+            chars[indexToChange] = '0';
+        } else {
+            chars[indexToChange] = '1';
+        }
+        ;
+        return chars;
+    }
 
 }
