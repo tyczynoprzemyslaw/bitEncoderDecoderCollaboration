@@ -131,5 +131,4 @@ public class BitwiseEncoderImpl implements Encoder {
         }
         return encodeString.toString();
     }
-
 }
