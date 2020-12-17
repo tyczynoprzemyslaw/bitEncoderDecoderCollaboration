@@ -2,6 +2,8 @@ package com.facebook.com.bitEncoderDecoder.bitwise;
 
 import com.facebook.bitEncoderDecoder.app.Decoder;
 import com.facebook.bitEncoderDecoder.bitwise.BitwiseDecoderImpl;
+import com.facebook.bitEncoderDecoder.exception.InputCorruptedException;
+import com.facebook.bitEncoderDecoder.exception.InputNotSentCorrectlyException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -10,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BitwiseDecoderImplTest {
 
@@ -131,8 +134,61 @@ public class BitwiseDecoderImplTest {
                                 }
                         )
                 )
+        );
+    }
 
-
+    @DisplayName("Should throw proper exception when input fails you")
+    @ParameterizedTest
+    @MethodSource("decodeCorruptionArgumentsProvider")
+    void decodeCorruption(Exception exception, String input) {
+        assertThrows(exception.getClass(), () -> decoder.decode(input));
+    }
+    private static Stream<Arguments> decodeCorruptionArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(
+                        new InputNotSentCorrectlyException(),
+                        String.valueOf(
+                                new char[]{
+                                        (char) Integer.parseInt("11000011", 2)
+                                }
+                        )
+                ),
+                Arguments.of(
+                        new InputNotSentCorrectlyException(),
+                        String.valueOf(
+                                new char[]{
+                                        (char) Integer.parseInt("10111100", 2),
+                                        (char) Integer.parseInt("10001100", 2),
+                                        (char) Integer.parseInt("00100000", 2),
+                                        (char) Integer.parseInt("11100000", 2),
+                                        (char) Integer.parseInt("00111011", 2),
+                                        (char) Integer.parseInt("11001000", 2),
+                                        (char) Integer.parseInt("00110001", 2),
+                                        (char) Integer.parseInt("00111101", 2),
+                                        (char) Integer.parseInt("00111101", 2),
+                                        (char) Integer.parseInt("11001110", 2),
+                                        (char) Integer.parseInt("00000000", 2),
+                                }
+                        )
+                ),
+                Arguments.of(
+                        new InputCorruptedException(),
+                        String.valueOf(
+                                new char[]{
+                                        (char) Integer.parseInt("11011011", 2)
+                                }
+                        )
+                ),
+                Arguments.of(
+                        new InputCorruptedException(),
+                        String.valueOf(
+                                new char[]{
+                                        (char) Integer.parseInt("01011110", 2),
+                                        (char) Integer.parseInt("01001001", 2),
+                                        (char) Integer.parseInt("01000010", 2),
+                                }
+                        )
+                )
         );
     }
 }
