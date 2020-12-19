@@ -54,6 +54,7 @@ There are three modules here:
 [Stage 4 - App operating on implementations from Stages 1-3](#stage4)<br/>
 [Stage 5 - bit level Encoder](#stage5)<br/>
 [Stage 6 - bit level Transmitter](#stage6)<br/>
+[Stage 7 - bit level Decoder](#stage7)<br/>
 
 ### Stage 1<a name="stage1"></a>
 Introduction - create a method encode() in class Stage1. Method takes a string as an input and return another string with tripled each character.
@@ -129,5 +130,42 @@ After this, you have 3 bits from input + 1 parity bit: abcX
 
 ### Stage 6<a name="stage6"></a>
 Implement Transmitter on bitwise level. Every byte of message gets 1 of their bit (at random position) changed.
+
+### Stage 7<a name="stage7"></a>
+<p>Decoder implemented on bitwise level.</p>
+<p>On input we get string send by Transmitter module. Each byte consist of paired bits. One pair of bits contain error, introduced by Transmitter.</p>
+
+```
+Example input:
+00110001
+01110000
+11011100
+```
+<p>To decode original message, reduce each pair of bits to one bit:</p>
+
+```
+00 -> 0
+11 -> 1
+10/01 -> ? (transmission error)
+```
+<p>This allows you to read original message, but it may contain some errors:</p>
+
+```
+00110001 -> 010?
+01110000 -> ?100
+11011100 -> 1?10
+```
+<p>When error appears on information bits, we should use parity bit to recover missing part. Consider this formula:</p>
+
+```
+bit0 + bit1 + bit2 = bit3
+
+Examples from previous step:
+0 + 1 + 0 = ? // result is 1, but it is not essential, since this is parity bit
+? + 1 + 0 = 0 // expression is true only if ? = 1, so final bits are: 1100
+1 + ? + 1 = 0 // expression is true for ? = 0, so result is: 1010
+```
+<p>Take 3 bits of information and use them to formulate final message. Ignore parity bits, since they are only loss recovery strategy.</p>
+<p>There may be surplus zero bits in last byte of message, added at encoding step - reduce them.</p>
 
 [go to top](#top)
