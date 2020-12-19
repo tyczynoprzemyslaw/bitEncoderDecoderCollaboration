@@ -2,7 +2,6 @@ package com.facebook.bitEncoderDecoder.bitwise;
 
 import com.facebook.bitEncoderDecoder.app.Decoder;
 import com.facebook.bitEncoderDecoder.bitwise.rawBitService.RawBitService;
-import com.facebook.bitEncoderDecoder.exception.InputCorruptedException;
 import com.facebook.bitEncoderDecoder.exception.InputNotSentCorrectlyException;
 
 public class RawBitwiseDecoderImpl implements Decoder {
