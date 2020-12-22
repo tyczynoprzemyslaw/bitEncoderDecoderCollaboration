@@ -1,7 +1,7 @@
 package com.facebook.com.bitEncoderDecoder.bitwise;
 
 import com.facebook.bitEncoderDecoder.app.Encoder;
-import com.facebook.bitEncoderDecoder.bitwise.BitwiseEncoderImpl;
+import com.facebook.bitEncoderDecoder.bitwise.RawBitwiseEncoderImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -11,8 +11,9 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BitwiseEncoderImplTest {
-    Encoder encoder = new BitwiseEncoderImpl();
+public class RawBitwiseEncoderImplTest {
+
+    Encoder encoder = new RawBitwiseEncoderImpl();
 
     @DisplayName("Should encoder() implements proper bitwise strategy")
     @ParameterizedTest

@@ -4,7 +4,7 @@ import com.facebook.bitEncoderDecoder.app.Decoder;
 import com.facebook.bitEncoderDecoder.utils.InputValidator;
 import com.facebook.bitEncoderDecoder.utils.Utils;
 
-import com.facebook.bitEncoderDecoder.exception.InputNotEncodedCorrectly;
+import com.facebook.bitEncoderDecoder.exception.InputNotEncodedCorrectlyException;
 
 import java.util.*;
 
@@ -34,7 +34,7 @@ public class SymbolDecoder implements Decoder {
             }
         }
         if (doubledChar == ' ') {
-            throw new InputNotEncodedCorrectly();
+            throw new InputNotEncodedCorrectlyException();
         }
         return doubledChar;
     }
