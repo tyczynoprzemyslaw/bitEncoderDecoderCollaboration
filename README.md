@@ -26,13 +26,25 @@ We are currently working on releasing functioning Stage 7 on 23.12.2020.
 We are building an App which simulates transmission of information via internet.</br> 
 
 There are three modules here:
-<ol>
-<li><strong>Encoder</strong> - takes an input message and encodes it, using a strategy to prevent information loss on transfer by Transmitter.</li>
-<li><strong>Transmitter</strong> - generates random noise in each section of transmitted message.</li>
-<li><strong>Decoder</strong> - takes transmitted message and recovers the original input, using loss-prevention strategies</li></ol>
-<p>On Stages 1-4 we are working with loss prevention strategies based on symbol (char) level. Stages 5+ will be dedicated for bitwise operations and operation such as bit parity and Hamming code.</p>
 
- ![App schema](images/bitEncoderSchemat.jpg)
+Name | Description
+---- | -----------
+Encoder | wraps an input message, using a strategy to prevent information loss
+Transmitter | generates random noise in each section of transmitted message
+Decoder | recovers the original input, using loss-prevention strategies
+
+Each Stage implement another layer of an App:
+
+Stage | Strategy | Name | Remarks
+----- | -------- | ---- | -------
+1 | Symbol | Encoder | duplicating chars in String
+2 | Symbol | Transmitter | 
+3 | Symbol | Decoder | 
+4 | Symbol | Integeration | connecting stages 1-3 into an App
+5 | Bitwise | Encoder | operating on bit-level in String
+6 | Bitwise | Transmitter | 
+7 | Bitwise | Decoder | 
+8 | Bitwise | Integeration | connecting stages 5-7
 
 ## Workflow<a name="workflow"></a>
 <ol>
