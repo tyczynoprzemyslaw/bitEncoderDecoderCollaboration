@@ -12,7 +12,8 @@ Multistage coding exercise based on JetBrains Academy project https://hyperskill
 </ul>
 
 ## Development progress:<a name ="developmentProgress"></a>
-We are currently working on releasing functioning Stage 7 on 23.12.2020.
+We are currently working on releasing functioning Stage 7 on ~~23.12.2020~~ 30.12.2020.
+![Holiday break](images/holiday-break.jpg)
 
 ## What is this project actually?<a name ="whatItDoes"></a>
 We are building an App which simulates transmission of information via internet.</br> 
