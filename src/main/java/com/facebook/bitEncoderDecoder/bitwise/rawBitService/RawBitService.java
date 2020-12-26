@@ -18,6 +18,16 @@ public class RawBitService {
     public char decodeChar(char symbol) {
         int source = getFirstByte(symbol);
         checkForTransmissionErrors(source);
+        symbol = removeNoise(symbol);
+        return symbol;
+    }
+
+    public char removeNoise(char symbol) {
+        int noisePosition = -1;
+        for (int i = 0; i < 8; i += 2) {
+
+        }
+
         return symbol;
     }
 
@@ -28,9 +38,7 @@ public class RawBitService {
     public void checkForTransmissionErrors(int source) {
         int countErrors = 0;
         for (int i = 0; i < 8 && countErrors < 1; i += 2) {
-            int firstBit = (source >> i) & 1;
-            int secondBit = (source >> i + 1) & 1;
-            if (firstBit != secondBit) {
+            if (isBitPairOdd(source, i)) {
                 countErrors++;
             }
         }
@@ -40,5 +48,11 @@ public class RawBitService {
         if (countErrors > 1) {
             throw new InputCorruptedException();
         }
+    }
+
+    private boolean isBitPairOdd(int source, int counter) {
+        int firstBit = (source >> counter) & 1;
+        int secondBit = (source >> counter + 1) & 1;
+        return firstBit != secondBit;
     }
 }
