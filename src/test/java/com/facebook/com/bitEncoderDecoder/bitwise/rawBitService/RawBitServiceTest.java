@@ -78,11 +78,28 @@ public class RawBitServiceTest {
 
     private static Stream<Arguments> setZerosBitPairArgumentsProvider() {
         return Stream.of(
-                Arguments.of(0b111111, 0b11111111, 0),
-                Arguments.of(0b10101111, 0b10001111, 2),
-                Arguments.of(0b1111, 0b11, 4),
-                Arguments.of(0b11001101, 0b11001100, 6),
+                Arguments.of(0b00111111, 0b11111111, 0),
+                Arguments.of(0b10001111, 0b10101111, 2),
+                Arguments.of(0b00000011, 0b00001111, 4),
+                Arguments.of(0b11001100, 0b11001101, 6),
                 Arguments.of(0, 0, 0)
+        );
+    }
+
+    @DisplayName("Should setOnesBitPair work")
+    @ParameterizedTest
+    @MethodSource("setOnesBitPairArgumentsProvider")
+    void setOnesBitPair(int expected, int given, int index) {
+        assertEquals(expected, rawBitService.setOnesBitPair(given, index));
+    }
+
+    private static Stream<Arguments> setOnesBitPairArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(0b11111111, 0b01111111, 0),
+                Arguments.of(0b10111111, 0b10111111, 2),
+                Arguments.of(0b10001111, 0b10000011, 4),
+                Arguments.of(0b11001111, 0b11001101, 6),
+                Arguments.of(0b11111111, 0b11111111, 0)
         );
     }
 }

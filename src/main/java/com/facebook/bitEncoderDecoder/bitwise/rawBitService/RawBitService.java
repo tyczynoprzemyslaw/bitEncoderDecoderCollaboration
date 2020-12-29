@@ -41,15 +41,11 @@ public class RawBitService {
         if (correctedBit == 1) {
             result = setOnesBitPair(result, noisePosition);
         }
-        System.out.println(Integer.toBinaryString(symbol));
-        System.out.println(Integer.toBinaryString(result));
-        System.out.println(noisePosition);
         return (char) result;
     }
 
     public int setOnesBitPair(int number, int index) {
-        int bitmask = 1 << (7 - index);
-        bitmask = bitmask | (1 << (6 - index));
+        int bitmask = 0b11 << (6 - index);
         return bitmask | number;
     }
 
