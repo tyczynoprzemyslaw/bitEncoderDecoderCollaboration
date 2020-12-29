@@ -53,15 +53,15 @@ public class RawBitServiceTest {
     @ParameterizedTest
     @MethodSource("removeNoiseArgumentsProvider")
     void removeNoise(char expected, char given) {
-        assertEquals(expected, given);
+        assertEquals(expected, rawBitService.removeNoise(given));
     }
 
     private static Stream<Arguments> removeNoiseArgumentsProvider() {
         return Stream.of(
                 Arguments.of((char) 0b11001100, (char) 0b01001100),
                 Arguments.of((char) 0b11001100, (char) 0b11101100),
-                Arguments.of((char) 0b11001100, (char) 0b01000100),
-                Arguments.of((char) 0b11001100, (char) 0b01001110),
+                Arguments.of((char) 0b11001100, (char) 0b11000100),
+                Arguments.of((char) 0b11001100, (char) 0b11001110),
                 Arguments.of((char) 0b00000000, (char) 0b10000000),
                 Arguments.of((char) 0b00000000, (char) 0b00010000),
                 Arguments.of((char) 0b00000000, (char) 0b00001000),

@@ -24,24 +24,37 @@ public class RawBitService {
 
     public char removeNoise(char symbol) {
         int noisePosition = -1;
-        int result = 0;
+        int result = symbol;
         int correctedBit = 0;
         for (int i = 0; i < 8; i += 2) {
             int currentBit = symbol >> (7 - i) & 1;
             if (isBitPairOdd(symbol, i)) {
-                noisePosition = i / 2;
+                noisePosition = i;
             } else {
                 correctedBit ^= currentBit;
             }
-            result = result | (currentBit << (i / 2));
         }
         if (noisePosition < 0) {
             throw new InputNotSentCorrectlyException();
         }
-        if (noisePosition < 3) {
-            result = result | (correctedBit << noisePosition);
+        result = resetBitPair(result, noisePosition);
+        if (correctedBit == 1) {
+            result = invertBitPair(result, noisePosition);
         }
+        System.out.println(Integer.toBinaryString(symbol));
+        System.out.println(Integer.toBinaryString(result));
+        System.out.println(noisePosition);
         return (char) result;
+    }
+
+    private int invertBitPair(int number, int index) {
+        int bitmask = 11 << (6 - index);
+        return bitmask | number;
+    }
+
+    private int resetBitPair(int number, int index) {
+        int bitmask = 0b11111111 ^ (11 << (6 - index));
+        return bitmask & number;
     }
 
     public int getFirstByte(char symbol) {
@@ -64,8 +77,8 @@ public class RawBitService {
     }
 
     private boolean isBitPairOdd(int source, int counter) {
-        int firstBit = (source >> counter) & 1;
-        int secondBit = (source >> counter + 1) & 1;
+        int firstBit = (source >> (7 - counter)) & 1;
+        int secondBit = (source >> (7 - counter - 1)) & 1;
         return firstBit != secondBit;
     }
 }
