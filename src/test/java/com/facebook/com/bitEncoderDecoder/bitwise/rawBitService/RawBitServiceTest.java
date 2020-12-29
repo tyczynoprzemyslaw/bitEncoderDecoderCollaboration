@@ -68,4 +68,21 @@ public class RawBitServiceTest {
                 Arguments.of((char) 0b00000000, (char) 0b00000010)
         );
     }
+
+    @DisplayName("Should setZerosBitPair work")
+    @ParameterizedTest
+    @MethodSource("setZerosBitPairArgumentsProvider")
+    void setZerosBitPair(int expected, int given, int index) {
+        assertEquals(expected, rawBitService.setZerosBitPair(given, index));
+    }
+
+    private static Stream<Arguments> setZerosBitPairArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(0b111111, 0b11111111, 0),
+                Arguments.of(0b10101111, 0b10001111, 2),
+                Arguments.of(0b1111, 0b11, 4),
+                Arguments.of(0b11001101, 0b11001100, 6),
+                Arguments.of(0, 0, 0)
+        );
+    }
 }

@@ -37,9 +37,9 @@ public class RawBitService {
         if (noisePosition < 0) {
             throw new InputNotSentCorrectlyException();
         }
-        result = resetBitPair(result, noisePosition);
+        result = setZerosBitPair(result, noisePosition);
         if (correctedBit == 1) {
-            result = invertBitPair(result, noisePosition);
+            result = setOnesBitPair(result, noisePosition);
         }
         System.out.println(Integer.toBinaryString(symbol));
         System.out.println(Integer.toBinaryString(result));
@@ -47,13 +47,14 @@ public class RawBitService {
         return (char) result;
     }
 
-    private int invertBitPair(int number, int index) {
-        int bitmask = 11 << (6 - index);
+    public int setOnesBitPair(int number, int index) {
+        int bitmask = 1 << (7 - index);
+        bitmask = bitmask | (1 << (6 - index));
         return bitmask | number;
     }
 
-    private int resetBitPair(int number, int index) {
-        int bitmask = 0b11111111 ^ (11 << (6 - index));
+    public int setZerosBitPair(int number, int index) {
+        int bitmask = 0b11111111 ^ setOnesBitPair(0, index);
         return bitmask & number;
     }
 
