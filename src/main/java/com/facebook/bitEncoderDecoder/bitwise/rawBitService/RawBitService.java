@@ -50,7 +50,7 @@ public class RawBitService {
 
     public void checkForTransmissionErrors(int source) {
         int countErrors = 0;
-        for (int i = 0; i < 8 && countErrors < 1; i += 2) {
+        for (int i = 0; i < 8; i += 2) {
             if (isBitPairOdd(source, i)) {
                 countErrors++;
             }
