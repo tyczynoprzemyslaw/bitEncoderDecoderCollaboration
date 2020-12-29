@@ -43,7 +43,7 @@ public class RawBitServiceTest {
     private static Stream<Arguments> checkForTransmissionErrorsArgumentsProvider() {
         return Stream.of(
                 Arguments.of(new InputCorruptedException(), 0b1010),
-                Arguments.of(new InputCorruptedException(), 0b01010101),
+                Arguments.of(new InputCorruptedException(), 0b01010100),
                 Arguments.of(new InputNotSentCorrectlyException(), 0b11001100),
                 Arguments.of(new InputNotSentCorrectlyException(), 0b00111100)
         );

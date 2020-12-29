@@ -24,11 +24,24 @@ public class RawBitService {
 
     public char removeNoise(char symbol) {
         int noisePosition = -1;
+        int result = 0;
+        int correctedBit = 0;
         for (int i = 0; i < 8; i += 2) {
-
+            int currentBit = symbol >> (7 - i) & 1;
+            if (isBitPairOdd(symbol, i)) {
+                noisePosition = i / 2;
+            } else {
+                correctedBit ^= currentBit;
+            }
+            result = result | (currentBit << (i / 2));
         }
-
-        return symbol;
+        if (noisePosition < 0) {
+            throw new InputNotSentCorrectlyException();
+        }
+        if (noisePosition < 3) {
+            result = result | (correctedBit << noisePosition);
+        }
+        return (char) result;
     }
 
     public int getFirstByte(char symbol) {
