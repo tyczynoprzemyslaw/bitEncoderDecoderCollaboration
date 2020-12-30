@@ -102,4 +102,40 @@ public class RawBitServiceTest {
                 Arguments.of(0b11111111, 0b11111111, 0)
         );
     }
+
+    @DisplayName("Should decodeChar return char with 3 bits of information")
+    @ParameterizedTest
+    @MethodSource("decodeCharArgumentsProvider")
+    void decodeChar(char expected, char given) {
+        assertEquals(expected, rawBitService.decodeChar(given));
+    }
+
+    private static Stream<Arguments> decodeCharArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(
+                        (char) Integer.parseInt("10100000", 2),
+                        (char) Integer.parseInt("11001000", 2)
+                ),
+                Arguments.of(
+                        (char) Integer.parseInt("00000000", 2),
+                        (char) Integer.parseInt("10000000", 2)
+                ),
+                Arguments.of(
+                        (char) Integer.parseInt("10000000", 2),
+                        (char) Integer.parseInt("11100011", 2)
+                ),
+                Arguments.of(
+                        (char) Integer.parseInt("00100000", 2),
+                        (char) Integer.parseInt("00001110", 2)
+                ),
+                Arguments.of(
+                        (char) Integer.parseInt("01000000", 2),
+                        (char) Integer.parseInt("01110011", 2)
+                ),
+                Arguments.of(
+                        (char) Integer.parseInt("11100000", 2),
+                        (char) Integer.parseInt("11111011", 2)
+                )
+        );
+    }
 }

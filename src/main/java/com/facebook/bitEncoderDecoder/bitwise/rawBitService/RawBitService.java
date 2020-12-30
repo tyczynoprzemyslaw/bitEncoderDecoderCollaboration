@@ -19,6 +19,7 @@ public class RawBitService {
         int source = getFirstByte(symbol);
         checkForTransmissionErrors(source);
         symbol = removeNoise(symbol);
+        symbol = rearrangeSignificantBits(symbol);
         return symbol;
     }
 
@@ -27,7 +28,7 @@ public class RawBitService {
         int result = symbol;
         int correctedBit = 0;
         for (int i = 0; i < 8; i += 2) {
-            int currentBit = symbol >> (7 - i) & 1;
+            int currentBit = getBit(symbol, 7 - i);
             if (isBitPairOdd(symbol, i)) {
                 noisePosition = i;
             } else {
@@ -74,8 +75,21 @@ public class RawBitService {
     }
 
     private boolean isBitPairOdd(int source, int counter) {
-        int firstBit = (source >> (7 - counter)) & 1;
-        int secondBit = (source >> (7 - counter - 1)) & 1;
+        int firstBit = getBit(source, 7 - counter);
+        int secondBit = getBit(source, 7 - counter - 1);
         return firstBit != secondBit;
+    }
+
+    private char rearrangeSignificantBits(char symbol) {
+        int result = 0;
+        for (int i = 0; i < 3; i++) {
+            int currentBit = getBit(symbol, 7 - i * 2);
+            result = result | (currentBit << (7 - i));
+        }
+        return (char) result;
+    }
+
+    private int getBit(int source, int position) {
+        return (source >> position) & 1;
     }
 }
