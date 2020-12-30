@@ -51,8 +51,9 @@ public class RawBitService {
     }
 
     public int setZerosBitPair(int number, int index) {
-        int bitmask = 0b11111111 ^ setOnesBitPair(0, index);
-        return bitmask & number;
+        number = setBit(number, 7 - index, 0);
+        number = setBit(number, 7 - index - 1, 0);
+        return number;
     }
 
     public int getFirstByte(char symbol) {
@@ -84,12 +85,18 @@ public class RawBitService {
         int result = 0;
         for (int i = 0; i < 3; i++) {
             int currentBit = getBit(symbol, 7 - i * 2);
-            result = result | (currentBit << (7 - i));
+            result = setBit(result, 7 - i, currentBit);
         }
         return (char) result;
     }
 
     private int getBit(int source, int position) {
         return (source >> position) & 1;
+    }
+
+    private int setBit(int source, int position, int bit) {
+        int bitmask = 0b11111111 ^ (1 << position);
+        source = source & bitmask;
+        return source | (bit << position);
     }
 }
