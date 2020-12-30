@@ -9,7 +9,15 @@ public class RawBitService {
         char[] chars = input.toCharArray();
         char[] result = new char[chars.length];
 
+        int bitCounter = 7;
         for (int i = 0; i < chars.length; i++) {
+            int currentByte = decodeChar(chars[i]);
+            if (bitCounter > 1) {
+                for (int j = 0; j < 3; j++) {
+                    setBit(result[i], bitCounter--, getBit(currentByte, 7 - j));
+                }
+
+            }
             result[i] = decodeChar(chars[i]);
         }
         return String.valueOf(result);
