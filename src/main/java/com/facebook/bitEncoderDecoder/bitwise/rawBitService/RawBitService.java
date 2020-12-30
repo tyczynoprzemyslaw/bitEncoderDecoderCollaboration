@@ -7,20 +7,35 @@ public class RawBitService {
 
     public String decode(String input) {
         char[] chars = input.toCharArray();
-        char[] result = new char[chars.length];
+        char[] triplets = new char[chars.length];
 
-        int bitCounter = 7;
         for (int i = 0; i < chars.length; i++) {
-            int currentByte = decodeChar(chars[i]);
-            if (bitCounter > 1) {
-                for (int j = 0; j < 3; j++) {
-                    setBit(result[i], bitCounter--, getBit(currentByte, 7 - j));
-                }
-
-            }
-            result[i] = decodeChar(chars[i]);
+            triplets[i] = decodeChar(chars[i]);
         }
-        return String.valueOf(result);
+
+        int bitsToProcess = 3 * chars.length;
+        int currentChar = 0;
+        int currentSourcePosition = 0;
+        int currentByte = 0;
+        int currentTargetPosition = 0;
+        int targetCharCounter = 0;
+        char[] target = new char[bitsToProcess / 8];
+        while(bitsToProcess > 0) {
+            currentByte = setBit(currentByte, 7 - currentTargetPosition, getBit(triplets[currentChar], 7 - currentSourcePosition));
+            bitsToProcess--;
+            currentTargetPosition++;
+            currentSourcePosition++;
+            if (currentSourcePosition > 2) {
+                currentSourcePosition = 0;
+                currentChar++;
+            }
+            if (currentTargetPosition > 7) {
+                target[targetCharCounter++] = (char) currentByte;
+                currentByte = 0;
+                currentTargetPosition = 0;
+            }
+        }
+        return String.valueOf(target);
     }
 
     public char decodeChar(char symbol) {
