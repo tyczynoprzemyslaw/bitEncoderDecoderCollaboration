@@ -46,8 +46,9 @@ public class RawBitService {
     }
 
     public int setOnesBitPair(int number, int index) {
-        int bitmask = 0b11 << (6 - index);
-        return bitmask | number;
+        number = setBit(number, 7 - index, 1);
+        number = setBit(number, 7 - index - 1, 1);
+        return number;
     }
 
     public int setZerosBitPair(int number, int index) {
@@ -90,11 +91,11 @@ public class RawBitService {
         return (char) result;
     }
 
-    private int getBit(int source, int position) {
+    public int getBit(int source, int position) {
         return (source >> position) & 1;
     }
 
-    private int setBit(int source, int position, int bit) {
+    public int setBit(int source, int position, int bit) {
         int bitmask = 0b11111111 ^ (1 << position);
         source = source & bitmask;
         return source | (bit << position);
