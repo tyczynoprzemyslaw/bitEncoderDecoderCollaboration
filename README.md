@@ -20,8 +20,7 @@ Multistage coding exercise based on JetBrains Academy project https://hyperskill
 </ul>
 
 ## Development progress:<a name ="developmentProgress"></a>
-We are currently working on releasing functioning Stage 7 on ~~23.12.2020~~ 30.12.2020.
-![Holiday break](images/holiday-break.jpg)
+We are currently working on Stage 7.1 - refactor and clean up - deadline on 06.01.2021
 
 ## What is this project actually?<a name ="whatItDoes"></a>
 We are building an App which simulates transmission of information via internet.</br> 
@@ -45,6 +44,7 @@ Stage | Strategy | Name | Remarks
 5 | Bitwise | Encoder | operating on bit-level in String
 6 | Bitwise | Transmitter | 
 7 | Bitwise | Decoder | 
+7.1 | | | refactor
 8 | Bitwise | Integeration | connecting stages 5-7
 
 ## Workflow<a name="workflow"></a>
